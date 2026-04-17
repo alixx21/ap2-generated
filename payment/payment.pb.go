@@ -79,6 +79,7 @@ type PaymentResponse struct {
 	TransactionId string                 `protobuf:"bytes,1,opt,name=transaction_id,json=transactionId,proto3" json:"transaction_id,omitempty"`
 	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
 	ProcessedAt   *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=processed_at,json=processedAt,proto3" json:"processed_at,omitempty"`
+	Amount        int64                  `protobuf:"varint,4,opt,name=amount,proto3" json:"amount,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -132,6 +133,13 @@ func (x *PaymentResponse) GetProcessedAt() *timestamppb.Timestamp {
 		return x.ProcessedAt
 	}
 	return nil
+}
+
+func (x *PaymentResponse) GetAmount() int64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
 }
 
 type ListPaymentsRequest struct {
@@ -237,11 +245,12 @@ const file_proto_payment_proto_rawDesc = "" +
 	"\x13proto/payment.proto\x12\apayment\x1a\x1fgoogle/protobuf/timestamp.proto\"C\n" +
 	"\x0ePaymentRequest\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x03R\x06amount\"\x8f\x01\n" +
+	"\x06amount\x18\x02 \x01(\x03R\x06amount\"\xa7\x01\n" +
 	"\x0fPaymentResponse\x12%\n" +
 	"\x0etransaction_id\x18\x01 \x01(\tR\rtransactionId\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\tR\x06status\x12=\n" +
-	"\fprocessed_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\vprocessedAt\"S\n" +
+	"\fprocessed_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\vprocessedAt\x12\x16\n" +
+	"\x06amount\x18\x04 \x01(\x03R\x06amount\"S\n" +
 	"\x13ListPaymentsRequest\x12\x1d\n" +
 	"\n" +
 	"min_amount\x18\x01 \x01(\x03R\tminAmount\x12\x1d\n" +
