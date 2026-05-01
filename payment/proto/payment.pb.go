@@ -26,6 +26,7 @@ type PaymentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	Amount        int64                  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	CustomerEmail string                 `protobuf:"bytes,3,opt,name=customer_email,json=customerEmail,proto3" json:"customer_email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -72,6 +73,13 @@ func (x *PaymentRequest) GetAmount() int64 {
 		return x.Amount
 	}
 	return 0
+}
+
+func (x *PaymentRequest) GetCustomerEmail() string {
+	if x != nil {
+		return x.CustomerEmail
+	}
+	return ""
 }
 
 type PaymentResponse struct {
@@ -242,10 +250,11 @@ var File_proto_payment_proto protoreflect.FileDescriptor
 
 const file_proto_payment_proto_rawDesc = "" +
 	"\n" +
-	"\x13proto/payment.proto\x12\apayment\x1a\x1fgoogle/protobuf/timestamp.proto\"C\n" +
+	"\x13proto/payment.proto\x12\apayment\x1a\x1fgoogle/protobuf/timestamp.proto\"j\n" +
 	"\x0ePaymentRequest\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x03R\x06amount\"\xa7\x01\n" +
+	"\x06amount\x18\x02 \x01(\x03R\x06amount\x12%\n" +
+	"\x0ecustomer_email\x18\x03 \x01(\tR\rcustomerEmail\"\xa7\x01\n" +
 	"\x0fPaymentResponse\x12%\n" +
 	"\x0etransaction_id\x18\x01 \x01(\tR\rtransactionId\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\tR\x06status\x12=\n" +
